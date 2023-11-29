@@ -15,5 +15,5 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "main": "build/index.js"
+  "main": "index.js"
 }
