@@ -13,7 +13,7 @@ app.get("/plants", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const page = req.query.page || 1;
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&page=1`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
@@ -49,9 +49,11 @@ app.get("/plants/search", async (req, res) => {
     const { query } = req.query;
 
     const apiUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${query}`;
+    // https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut
     // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
 
     const response = await axios.get(apiUrl);
+    console.log(response);
     res.json(response.data);
   } catch (error) {
     res
