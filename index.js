@@ -25,9 +25,10 @@ app.get("/plants", async (req, res) => {
 app.get("/plants/filter", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    const { filterParams } = req.query;
+    const { filterParams, params } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&${filterParams}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&filter[${filterParams}]=${params}`;
+    // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
