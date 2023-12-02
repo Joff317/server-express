@@ -48,7 +48,7 @@ app.get("/plants/search", async (req, res) => {
     const token = process.env.TOKEN;
     const { query } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&search=${query}`;
+    const apiUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${query}`;
     // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
 
     const response = await axios.get(apiUrl);
