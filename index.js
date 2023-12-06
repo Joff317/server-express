@@ -13,7 +13,7 @@ app.get("/plants", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const page = req.query.page || 1;
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&page=${page}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
