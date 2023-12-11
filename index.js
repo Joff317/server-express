@@ -64,7 +64,7 @@ app.get("/families", async (req, res) => {
     const token = process.env.TOKEN;
     const { filterParams, params } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/familes?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/families?token=${token}`;
     //
     // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
 
