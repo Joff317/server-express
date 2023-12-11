@@ -40,42 +40,6 @@ app.get("/plants/id", async (req, res) => {
   }
 });
 
-// ---------------------------- FILTER BY PARAMS ----------------------------
-app.get("/plants/filter", async (req, res) => {
-  try {
-    const token = process.env.TOKEN;
-    const { filterParams, params } = req.query;
-
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&filter[${filterParams}]=${params}`;
-    //
-    // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
-
-    const response = await axios.get(apiUrl);
-    res.json(response.data);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Erreur lors de la récupération des données" });
-  }
-});
-// ---------------------------- FILTER BY FAMILIES ----------------------------
-app.get("/families", async (req, res) => {
-  try {
-    const token = process.env.TOKEN;
-    const { filterParams, params } = req.query;
-
-    const apiUrl = `https://trefle.io/api/v1/families?token=${token}`;
-    //
-    // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
-
-    const response = await axios.get(apiUrl);
-    res.json(response.data);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Erreur lors de la récupération des données" });
-  }
-});
 // ---------------------------- FILTER BY SPECIES RANGE ----------------------------
 app.get("/species/filter", async (req, res) => {
   try {
@@ -96,9 +60,9 @@ app.get("/species/filter", async (req, res) => {
 app.get("/plants/sort", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    const { sortParams, params } = req.query;
+    // const { sortParams, params } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[${sortParams}]=${params}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[year]=asc`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
