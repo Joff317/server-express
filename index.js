@@ -44,9 +44,10 @@ app.get("/plants/id", async (req, res) => {
 app.get("/species/filter", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    const { params } = req.query;
+    const { params1, params2 } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[maximum_height_cm]=${params}`;
+    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[maximum_height_cm]=${params1},${params2}`;
+    // https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
@@ -60,7 +61,6 @@ app.get("/species/filter", async (req, res) => {
 app.get("/plants/sort", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    // const { sortParams, params } = req.query;
 
     const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[year]=asc`;
 
