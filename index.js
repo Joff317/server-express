@@ -58,13 +58,31 @@ app.get("/plants/filter", async (req, res) => {
       .json({ error: "Erreur lors de la récupération des données" });
   }
 });
-// ---------------------------- FILTER BY SPECIES RANGE ----------------------------
-app.get("/species/filter", async (req, res) => {
+// ---------------------------- FILTER BY FAMILIES ----------------------------
+app.get("/families", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const { filterParams, params } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[${filterParams}]=${params}`;
+    const apiUrl = `https://trefle.io/api/v1/familes?token=${token}`;
+    //
+    // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
+
+    const response = await axios.get(apiUrl);
+    res.json(response.data);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la récupération des données" });
+  }
+});
+// ---------------------------- FILTER BY SPECIES RANGE ----------------------------
+app.get("/species/filter", async (req, res) => {
+  try {
+    const token = process.env.TOKEN;
+    const { params } = req.query;
+
+    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[maximum_height_cm]=${params}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
