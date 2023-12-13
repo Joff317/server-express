@@ -24,21 +24,6 @@ app.get("/plants", async (req, res) => {
   }
 });
 
-// ---------------------------- GET ALL PLANTS ----------------------------
-app.get("/allplants", async (req, res) => {
-  try {
-    const token = process.env.TOKEN;
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}`;
-
-    const response = await axios.get(apiUrl);
-    res.json(response.data);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Erreur lors de la récupération des données" });
-  }
-});
-
 // ---------------------------- GET SPECIFIC PLANTS ----------------------------
 app.get("/plants/id", async (req, res) => {
   try {
@@ -55,22 +40,6 @@ app.get("/plants/id", async (req, res) => {
   }
 });
 
-// ---------------------------- FILTER BY SPECIES RANGE ----------------------------
-app.get("/species/filter", async (req, res) => {
-  try {
-    const token = process.env.TOKEN;
-    const { params1, params2 } = req.query;
-
-    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[maximum_height]=${params1},${params2}`;
-
-    const response = await axios.get(apiUrl);
-    res.json(response.data);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Erreur lors de la récupération des données" });
-  }
-});
 // ---------------------------- SORT BY PARAMS ----------------------------
 app.get("/plants/sort", async (req, res) => {
   try {
