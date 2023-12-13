@@ -41,13 +41,12 @@ app.get("/plants/id", async (req, res) => {
 });
 
 // ---------------------------- FILTER BY SPECIES RANGE ----------------------------
-app.get("/species", async (req, res) => {
+app.get("/species/filter", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    const { page } = req.query;
+    const { params1, params2 } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&page=${page}`;
-    // https://trefle.io/api/v1/species?token=YOUR_TREFLE_TOKEN&range[maximum_height_cm]=5,20
+    const apiUrl = `https://trefle.io/api/v1/species?token=${token}&range[maximum_height]=${params1},${params2}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
