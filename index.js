@@ -80,7 +80,7 @@ app.get("/countries/id", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const id = req.query.id;
-    const apiUrl = `https://trefle.io/api/v1/distributions/${id}?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/distributions/${id}?token=${token}/plants`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
