@@ -62,8 +62,9 @@ app.get("/plants/sort", async (req, res) => {
 app.get("/countries", async (req, res) => {
   try {
     const token = process.env.TOKEN;
+    const page = req.query.page || 1;
 
-    const apiUrl = `https://trefle.io/api/v1/distributions?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/distributions?token=${token}&page=${page}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
@@ -73,6 +74,23 @@ app.get("/countries", async (req, res) => {
       .json({ error: "Erreur lors de la récupération des données" });
   }
 });
+
+// ---------------------------- GET SPECIFIC DISTRIBUTIONS ----------------------------
+app.get("/plants/id", async (req, res) => {
+  try {
+    const token = process.env.TOKEN;
+    const id = req.query.id;
+    const apiUrl = `https://trefle.io/api/v1/distributions/${id}?token=${token}`;
+
+    const response = await axios.get(apiUrl);
+    res.json(response.data);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Erreur lors de la récupération des données" });
+  }
+});
+
 // ---------------------------- SEARCH BY PLANT ----------------------------
 app.get("/plants/search", async (req, res) => {
   try {
