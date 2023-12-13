@@ -76,7 +76,7 @@ app.get("/countries", async (req, res) => {
 });
 
 // ---------------------------- GET SPECIFIC DISTRIBUTIONS ----------------------------
-app.get("/plants/id", async (req, res) => {
+app.get("/countries/id", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const id = req.query.id;
