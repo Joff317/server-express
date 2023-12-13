@@ -62,7 +62,7 @@ app.get("/plants/sort", async (req, res) => {
     const token = process.env.TOKEN;
     const page = req.query.page || 1;
 
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[year]=asc&page=${page}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[family]=asc&page=${page}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
