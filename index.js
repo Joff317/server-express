@@ -25,7 +25,7 @@ app.get("/plants", async (req, res) => {
 });
 
 // ---------------------------- GET ALL PLANTS ----------------------------
-app.get("/plants", async (req, res) => {
+app.get("/allplants", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const apiUrl = `https://trefle.io/api/v1/plants?token=${token}`;
