@@ -41,7 +41,7 @@ app.get("/plants/id", async (req, res) => {
 });
 
 // ---------------------------- FILTER BY SPECIES RANGE ----------------------------
-app.get("/species/filter", async (req, res) => {
+app.get("/species", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const { page } = req.query;
