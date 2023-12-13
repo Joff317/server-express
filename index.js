@@ -63,7 +63,7 @@ app.get("/countries", async (req, res) => {
   try {
     const token = process.env.TOKEN;
 
-    const apiUrl = `https://trefle.io/api/v1/distribution?token=${token}`;
+    const apiUrl = `https://trefle.io/api/v1/distributions?token=${token}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
