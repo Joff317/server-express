@@ -61,8 +61,9 @@ app.get("/plants/sort", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const page = req.query.page || 1;
+    const { params } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[family]=asc&page=${page}`;
+    const apiUrl = `https://trefle.io/api/v1/plants?token=${token}&order[${params}]=asc&page=${page}`;
 
     const response = await axios.get(apiUrl);
     res.json(response.data);
@@ -76,9 +77,9 @@ app.get("/plants/sort", async (req, res) => {
 app.get("/plants/search", async (req, res) => {
   try {
     const token = process.env.TOKEN;
-    const { query } = req.query;
+    const { query, page } = req.query;
 
-    const apiUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${query}`;
+    const apiUrl = `https://trefle.io/api/v1/plants/search?token=${token}&q=${query}&page=${page}`;
     // https://trefle.io/api/v1/plants/search?token=YOUR_TREFLE_TOKEN&q=coconut
     // https://trefle.io/api/v1/plants?token=bUqrMeoN_DsqyUuovxf_LYlChfVtmQtvavP804J-B9k&filter[common_name]=Evergreen%20oak
 
