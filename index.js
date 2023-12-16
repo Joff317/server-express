@@ -76,7 +76,7 @@ app.get("/countries", async (req, res) => {
 });
 
 // ---------------------------- GET SPECIFIC DISTRIBUTIONS ----------------------------
-app.get("/countries/id", async (req, res) => {
+app.get("/countries/slug", async (req, res) => {
   try {
     const token = process.env.TOKEN;
     const slug = req.query.slug;
